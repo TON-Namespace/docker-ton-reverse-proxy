@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  # First run this for initialization
+  tonutils-init:
+    # build: .
+    image: tonnamespace/reverse-proxy:latest
+    container_name: tonutils-init
+    network_mode: host
+    volumes:
+      - ./tonutils-config:/app
+    environment:
+      - FIRST_INIT=true
+      - DOMAIN=namespace.ton
+      - TX_URL=false  # Set to true for transaction URL instead of QR
+    profiles:
+      - init
+
+  # Then run this for normal operation
+  tonutils-proxy:
+    # build: .
+    image: tonnamespace/reverse-proxy:latest
+    container_name: tonutils-proxy
+    network_mode: host
+    volumes:
+      - ./tonutils-config:/app
+    environment:
+      - PROXY_PASS=https://namespace.my/
+      - EXTERNAL_IP=104.194.141.104
+      - LISTEN_IP=0.0.0.0
+      - PORT=10047
+    restart: unless-stopped
+    profiles:
+      - proxy
