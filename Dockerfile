@@ -11,8 +11,8 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Download and install tonutils reverse proxy
-RUN wget https://github.com/tonutils/reverse-proxy/releases/latest/download/tonutils-reverse-proxy-linux-amd64 \
-    && chmod +x tonutils-reverse-proxy-linux-amd64
+RUN wget https://github.com/tonutils/reverse-proxy/releases/latest/download/tonutils-reverse-proxy-linux-amd64 -O /usr/local/bin/tonutils-reverse-proxy-linux-amd64
+RUN chmod +x /usr/local/bin/tonutils-reverse-proxy-linux-amd64
 
 # Copy entrypoint script
 COPY entrypoint.sh /entrypoint.sh

@@ -52,11 +52,11 @@ if [ "$FIRST_INIT" = "true" ]; then
     fi
     
     echo "Running initialization command..."
-    echo "Command: ./tonutils-reverse-proxy-linux-amd64 $INIT_ARGS"
+    echo "Command: tonutils-reverse-proxy-linux-amd64 $INIT_ARGS"
     echo ""
     
     # Run initialization
-    /app/tonutils-reverse-proxy-linux-amd64 $INIT_ARGS
+    tonutils-reverse-proxy-linux-amd64 $INIT_ARGS
     
     # Check if config was created
     if [ -f "/app/config.json" ]; then
@@ -141,4 +141,4 @@ echo "🌐 External IP: $EXTERNAL_IP"
 echo ""
 
 # Start the reverse proxy
-exec /app/tonutils-reverse-proxy-linux-amd64
+exec tonutils-reverse-proxy-linux-amd64
